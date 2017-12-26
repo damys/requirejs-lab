@@ -2,36 +2,32 @@ require.config({
     baseUrl:'/style/js',
     urlArgs:'_=' + new Date().getTime(),
     // 默认为7s
-    waitSeconds:15,
+    waitSeconds:20,
     paths:{
         jquery:[
-            '//cdn.bootcss.com/jquery/2.2.3/jquery',
-            './lib/jquery.min'
+            './lib/jquery.min',
+            '//cdn.bootcss.com/jquery/2.2.3/jquery'
         ],
         bootstrap:'./lib/bootstrap/bootstrap',
         text:'./lib/text'
     },
-    map:{
-        // 'app/api':{
-        //     'jquery':'./lib/jquery.min'
-        // }
-        '*':{
-            'css':'./lib/bootstrap/bootstrap'
-        }
-    },
     // 不兼容AMD 的模块
     shim:{
-        // 'bootstrap':{
-        //     'deps':['jquery'],         // 依赖的模块
-        //     'exports':'bootstrap',     // 全局变量为模块对象
-        //     'init':function($){        // 初始化函数，返回的对象代替exports 作为模块对象
-        //         return $;
-        //     }
-        // },
         'bootstrap':{
-            deps:['jquery','css!lib/bootstrap/bootstrap.css']
+            'deps':['jquery'],         // 依赖的模块
+            'exports':'bootstrap',     // 全局变量为模块对象
+            'init':function($){        // 初始化函数，返回的对象代替exports 作为模块对象
+                return $;
+            }
         }
-
+    },
+    map:{
+        // 'app/api':{
+        //     jquery:'./lib/jquery.min'
+        // },
+        'app/api2':{
+            jquery:'./lib/jquery2.min'
+        }
     },
     config:{
         text:{
